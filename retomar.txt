@@ -1,0 +1,12 @@
+
+1. Subir o container (se estiver parado)
+bashdocker start videochatbot-pgvector
+Ou abre o Docker Desktop e clica em ▶️ no container.
+2. Confirmar que o Ollama está rodando
+O Ollama roda como um serviço no Windows, então normalmente já está ativo. Confirma abrindo o navegador em:
+http://localhost:11434
+Se aparecer Ollama is running, está ok. Se não, abre o Ollama pela barra de tarefas ou roda ollama serve no terminal.
+3. Abrir o projeto no IntelliJ e rodar
+Abre o projeto normalmente e dá ▶️ — o Spring vai conectar ao banco e ao Ollama automaticamente com as configs do application.yml.
+4. Reconectar ao banco no IntelliJ (se perder a conexão)
+No painel Database → clica na conexão videochatbot → botão de reconectar (ou clica com botão direito → Connect). Se precisar recriar, é só usar as mesmas credenciais: localhost:5432, usuário admin, senha admin, banco videochatbot.
