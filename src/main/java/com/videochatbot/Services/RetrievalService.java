@@ -14,11 +14,12 @@ public class RetrievalService {
     public RetrievalService(VectorStore vectorStore){
         this.vectorStore = vectorStore;
     }
-    public String GetContext(String pergunta){
+    public String GetContext(String pergunta, String topicoAtual){
         List<Document> resultado = vectorStore.similaritySearch(
                 SearchRequest.builder()
                         .query(pergunta)
                         .topK(6)
+                        //.filterExpression("topicIndex <= " + indiceTopicoAtual)
                         .build()
         );
         return resultado.stream()
