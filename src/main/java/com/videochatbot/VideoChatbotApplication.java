@@ -10,6 +10,8 @@ public class VideoChatbotApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(VideoChatbotApplication.class, args);
+        TranscriptionService service = new TranscriptionService();
+        service.baixarAudio();
 
 	}
 

@@ -23,3 +23,6 @@ spring:
         index-type: HNSW
         distance-type: COSINE_DISTANCE
         dimensions: 768           # dimensão do nomic-embed-text
+    groq:
+      api:
+        key: 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

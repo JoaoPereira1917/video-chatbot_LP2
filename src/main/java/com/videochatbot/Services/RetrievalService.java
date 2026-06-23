@@ -27,5 +27,4 @@ public class RetrievalService {
                 .collect(Collectors.joining("\n\n"));
     }
 
-
 }
