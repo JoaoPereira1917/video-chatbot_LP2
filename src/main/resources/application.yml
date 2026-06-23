@@ -25,4 +25,4 @@ spring:
         dimensions: 768           # dimensão do nomic-embed-text
     groq:
       api:
-        key: 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
+        key: ${GROQ_API_KEY}
