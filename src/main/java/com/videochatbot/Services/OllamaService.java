@@ -11,6 +11,7 @@ public class OllamaService implements ChatServiceInterface {
 
     private final OllamaChatModel chatModel;
 
+
     public OllamaService(OllamaChatModel chatModel){
         this.chatModel = chatModel;
     }

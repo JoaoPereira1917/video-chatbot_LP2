@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
 import java.io.File;
+import java.util.List;
 
 @Service
 public class GroqTranscriptionService {
@@ -36,6 +37,7 @@ public class GroqTranscriptionService {
         bodyBuilder.part("model", "whisper-large-v3-turbo");
         bodyBuilder.part("response_format", "verbose_json"); //retorno de segmentos do video
         bodyBuilder.part("language", "pt");
+        bodyBuilder.part("timestamp_granularities", List.of("segment"));
 
         return restClient.post()
                 .uri("/audio/transcriptions")

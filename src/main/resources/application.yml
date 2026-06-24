@@ -26,3 +26,6 @@ spring:
     groq:
       api:
         key: ${GROQ_API_KEY}
+    app:
+      audio:
+        temp-dir: ${java.io.tempdir}/videochatbot

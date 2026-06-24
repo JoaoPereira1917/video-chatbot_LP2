@@ -47,7 +47,7 @@ public class ProcessContextService {
 
     }
 
-    private void storeDocuments(List<Document> documentos){
+    public void storeDocuments(List<Document> documentos){
         List<Document> chunks = textSplitter.apply(documentos);
         vectorStore.add(chunks);
     }
