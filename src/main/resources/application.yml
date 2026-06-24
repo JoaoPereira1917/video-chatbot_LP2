@@ -23,9 +23,9 @@ spring:
         index-type: HNSW
         distance-type: COSINE_DISTANCE
         dimensions: 768           # dimensão do nomic-embed-text
-    groq:
-      api:
-        key: ${GROQ_API_KEY}
-    app:
-      audio:
-        temp-dir: ${java.io.tempdir}/videochatbot
+groq:
+  api:
+    key: ${GROQ_API_KEY}
+app:
+  audio:
+    temp-dir: ${java.io.tmpdir}/videochatbot
