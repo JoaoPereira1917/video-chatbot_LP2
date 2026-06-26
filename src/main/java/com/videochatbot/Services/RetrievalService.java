@@ -18,7 +18,7 @@ public class RetrievalService {
         List<Document> resultado = vectorStore.similaritySearch(
                 SearchRequest.builder()
                         .query(pergunta)
-                        .topK(6)
+                        .topK(8)
                         //.filterExpression("topicIndex <= " + indiceTopicoAtual)
                         .build()
         );
