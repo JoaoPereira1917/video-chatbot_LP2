@@ -14,7 +14,7 @@ public class RetrievalService {
     public RetrievalService(VectorStore vectorStore){
         this.vectorStore = vectorStore;
     }
-    public String GetContext(String pergunta, String topicoAtual){
+    public String getContext(String pergunta, String topicoAtual){
         List<Document> resultado = vectorStore.similaritySearch(
                 SearchRequest.builder()
                         .query(pergunta)

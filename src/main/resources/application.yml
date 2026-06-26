@@ -6,7 +6,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: none     # o Spring AI cuida do schema vetorial
+      ddl-auto: none
     show-sql: false
 
   ai:
@@ -15,14 +15,14 @@ spring:
       chat:
         model: llama3.2
       embedding:
-        model: nomic-embed-text   # modelo separado só para embeddings
+        model: nomic-embed-text
 
     vectorstore:
       pgvector:
-        initialize-schema: true   # cria a tabela automaticamente na primeira vez
+        initialize-schema: true
         index-type: HNSW
         distance-type: COSINE_DISTANCE
-        dimensions: 768           # dimensão do nomic-embed-text
+        dimensions: 768
 groq:
   api:
     key: ${GROQ_API_KEY}
