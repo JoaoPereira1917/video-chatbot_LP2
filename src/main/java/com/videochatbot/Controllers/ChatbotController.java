@@ -64,7 +64,7 @@ public class ChatbotController {
                 return ResponseEntity.badRequest().body("Pergunta não informada");
             }
 
-            // O retrievalService pode lançar exceção se não houver contexto
+
             String contexto = retrievalService.getContext(pergunta, "video");
             log.debug("Contexto recuperado ({} caracteres)", contexto.length());
 

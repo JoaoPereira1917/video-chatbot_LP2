@@ -43,7 +43,6 @@ public class OllamaService implements ChatServiceInterface {
                 """
                 , contexto, pergunta
         );
-
         Prompt prompt = new Prompt(promptCompleto);
         ChatResponse response = chatModel.call(prompt);
         return response.getResult().getOutput().getText();

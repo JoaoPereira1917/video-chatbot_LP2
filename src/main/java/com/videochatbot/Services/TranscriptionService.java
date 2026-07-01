@@ -21,11 +21,12 @@ public class TranscriptionService {
     private final ProcessContextService processContextService;
     private final ObjectMapper objectMapper;
     private final AudioProcessService audioProcessService;
-    @Value("${java.io.tmpdir}")
-    private String tempDir;
+
+    private  String tempDir;
 
     public TranscriptionService(GroqTranscriptionService groqService, ProcessContextService processContextService,
-                                ObjectMapper objectMapper, AudioProcessService audioProcessService) {
+                                ObjectMapper objectMapper, AudioProcessService audioProcessService,
+                                @Value("${java.io.tmpdir}") String tempDir) {
 
         this.groqService = groqService;
         this.processContextService = processContextService;
@@ -45,8 +46,8 @@ public class TranscriptionService {
             audioProcessService.deletarArquivo(arquivoFlac);
         }
         catch (Exception e) {
-            System.err.println(" Erro no processamento: " + e.getMessage());
 
+            throw new RuntimeException("Erro no processamento do vídeo", e);
         }
 
     }
@@ -60,7 +61,7 @@ public class TranscriptionService {
         }
     }
     private void salvarSegmentos(List<GroqSegment> segmentos, String origem){
-
+        processContextService.limparBanco();
         List<Document> documentos = new ArrayList<>();
         for(GroqSegment seg : segmentos){
             Map<String, Object> metadata = new HashMap<>();

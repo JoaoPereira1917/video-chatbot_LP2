@@ -24,11 +24,7 @@ public class GroqTranscriptionService {
                 .build();
     }
 
-    /**
-     * Transcreve um arquivo de áudio usando Groq STT.
-     * @param audioFile
-     * @return resposta JSON completa (você pode mapear para uma classe depois)
-     */
+
     public String transcribe(File audioFile) {
 
         MultipartBodyBuilder bodyBuilder = new MultipartBodyBuilder();

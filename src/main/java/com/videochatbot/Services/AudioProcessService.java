@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 public class AudioProcessService {
-    @Value("${java.io.tmpdir}")
+
     private String tempDir;
 
     public AudioProcessService(@Value("${app.audio.temp-dir}") String tempDir) {
@@ -30,7 +30,7 @@ public class AudioProcessService {
 
     protected File getAudio(String url) {
         try {
-            // Garante que o diretório temporário exista (já está sendo criado no construtor, mas não custa verificar)
+
             File tempFolder = new File(tempDir);
             if (!tempFolder.exists()) {
                 tempFolder.mkdirs();
@@ -38,32 +38,32 @@ public class AudioProcessService {
 
             String nomeBase = "audio_baixado";
 
-            // Comando de download
+
             List<String> downloadCmd = new ArrayList<>();
             downloadCmd.add("yt-dlp");
             downloadCmd.add("-f");
             downloadCmd.add("bestaudio[ext=m4a]/bestaudio");
             downloadCmd.add("-o");
-            downloadCmd.add(nomeBase + ".%(ext)s");  // relativo, será salvo no diretório de trabalho
+            downloadCmd.add(nomeBase + ".%(ext)s");
             downloadCmd.add(url);
 
             System.out.println("Iniciando download com: " + String.join(" ", downloadCmd));
-            executarComando(downloadCmd, tempFolder);   // Passa o diretório de trabalho
+            executarComando(downloadCmd, tempFolder);
 
-            // Localiza o arquivo baixado dentro de tempFolder
+
             File arquivoBaixado = localizarArquivo(nomeBase, tempDir);
             if (arquivoBaixado == null) {
                 System.err.println("Erro: Arquivo baixado não encontrado.");
                 throw new NullPointerException("");
             }
 
-            // Comando de conversão
+
             String arquivoSaida = "audio_final.flac";
             List<String> convertCmd = new ArrayList<>();
             convertCmd.add("ffmpeg");
             convertCmd.add("-y");
             convertCmd.add("-i");
-            convertCmd.add(arquivoBaixado.getName());  // caminho relativo dentro do diretório de trabalho
+            convertCmd.add(arquivoBaixado.getAbsolutePath());
             convertCmd.add("-ar");
             convertCmd.add("16000");
             convertCmd.add("-ac");
@@ -77,7 +77,7 @@ public class AudioProcessService {
             System.out.println("Convertendo para FLAC: " + String.join(" ", convertCmd));
             executarComando(convertCmd, tempFolder);
 
-            // Retorna o arquivo convertido diretamente, sem precisar de localizarArquivo
+
             File arquivoConvertido = new File(tempFolder, arquivoSaida);
             if (!arquivoConvertido.exists()) {
                 throw new IOException("Falha na conversão: arquivo FLAC não gerado.");
@@ -95,7 +95,7 @@ public class AudioProcessService {
 
     private void executarComando(List<String> comando, File workingDir) throws IOException, InterruptedException {
         ProcessBuilder pb = new ProcessBuilder(comando);
-        pb.directory(workingDir);            // Define o diretório de trabalho
+        pb.directory(workingDir);
         pb.redirectErrorStream(true);
         Process process = pb.start();
 

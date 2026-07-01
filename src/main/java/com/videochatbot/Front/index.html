@@ -33,7 +33,7 @@
       line-height: 1.6;
     }
 
-    /* ── Layout ─────────────────────────────────────── */
+
     .app {
       display: grid;
       grid-template-rows: 52px 1fr;
@@ -42,7 +42,7 @@
       overflow: hidden;
     }
 
-    /* ── Header ─────────────────────────────────────── */
+
     header {
       grid-column: 1 / -1;
       display: flex;
@@ -83,7 +83,7 @@
       font-family: var(--mono);
     }
 
-    /* ── Player side ─────────────────────────────────── */
+
     .player-side {
       display: flex;
       flex-direction: column;
@@ -189,7 +189,7 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ── Chat side ───────────────────────────────────── */
+
     .chat-side {
       display: flex;
       flex-direction: column;
@@ -212,7 +212,7 @@
       margin-top: 2px;
     }
 
-    /* Messages */
+
     .messages {
       flex: 1;
       overflow-y: auto;
@@ -375,7 +375,7 @@
 
 <div class="app">
 
-  <!-- Header -->
+
   <header>
     <div class="logo">
       <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14.93V15a1 1 0 00-2 0v1.93A8.001 8.001 0 014.07 13H6a1 1 0 000-2H4.07A8.001 8.001 0 0111 4.07V6a1 1 0 002 0V4.07A8.001 8.001 0 0119.93 11H18a1 1 0 000 2h1.93A8.001 8.001 0 0113 16.93z"/></svg>
@@ -385,7 +385,7 @@
     <div class="status-dot" id="statusDot"></div>
   </header>
 
-  <!-- Player -->
+
   <div class="player-side">
     <div class="url-bar">
       <input type="text" id="urlInput" placeholder="https://www.youtube.com/watch?v=..." />
@@ -408,7 +408,7 @@
     </div>
   </div>
 
-  <!-- Chat -->
+
   <div class="chat-side">
     <div class="chat-header">
       <h2>Assistente</h2>
@@ -440,7 +440,7 @@
 
   let videoCarregado = false;
 
-  // ── Utilitários ──────────────────────────────────────
+  // Utilitário
 
   function extrairVideoId(url) {
     const patterns = [
@@ -484,7 +484,7 @@
     }
   }
 
-  // ── Mensagens ────────────────────────────────────────
+  //  Mensagens
 
   function addMessage(text, role) {
     const container = document.getElementById('messages');
@@ -524,7 +524,7 @@
     if (t) t.remove();
   }
 
-  // ── Carregar vídeo ───────────────────────────────────
+  // Carregar vídeo
 
   async function carregarVideo() {
     const url = document.getElementById('urlInput').value.trim();
@@ -533,14 +533,14 @@
     const videoId = extrairVideoId(url);
     if (!videoId) { showToast('Link inválido. Use um link do YouTube', true); return; }
 
-    // Exibe o player imediatamente
+
     const iframe = document.getElementById('player');
     iframe.referrerPolicy = "strict-origin-when-cross-origin";
     iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
     iframe.style.display = 'block';
     document.getElementById('placeholder').style.display = 'none';
 
-    // Inicia processamento no backend
+
     const btn = document.getElementById('btnLoad');
     const bar = document.getElementById('processingBar');
     btn.disabled = true;
@@ -573,7 +573,7 @@
     }
   }
 
-  // ── Enviar pergunta ──────────────────────────────────
+
 
   async function enviarPergunta() {
     const input = document.getElementById('chatInput');
